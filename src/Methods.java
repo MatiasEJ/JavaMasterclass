@@ -1,12 +1,10 @@
-import java.util.Scanner;
-
 /****
  * JAVA BASES. Cap 26.
  * Constructors +
  * 
  ****/
 
-public class methods {
+public class Methods {
 
 	
 	public static void main(String[] args) {
@@ -33,7 +31,6 @@ public class methods {
 //		System.out.printf("Nombre: %s, Email: %s, CreditoMax: %d \n", diego.getName(), diego.getEmail(),diego.getCreditLimit());
 //		System.out.printf("Nombre: %s, Email: %s, CreditoMax: %d \n", carlo.getName(), carlo.getEmail(),carlo.getCreditLimit());
 //		
-		Animal animal = new Animal(1, 1, 5, 5, "Animal");
 		
 		Dog dog = new Dog(8, 20, "wat", 4, 1, 1, 1, "juan");
 		

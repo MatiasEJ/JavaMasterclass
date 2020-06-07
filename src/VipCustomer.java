@@ -27,9 +27,7 @@ public class VipCustomer {
 	}
 	
 	public VipCustomer(String name, int creditLimit) {
-		this.name = name;
-		this.creditLimit = creditLimit;
-		this.email = "default value";
+		this(name, creditLimit, "defaultEmail");
 	}
 	
 	public VipCustomer(String name, int creditLimit, String email) {

@@ -13,15 +13,11 @@ public class Main {
 //		
 //		player.loseHealth(damage);
 //	
-		
+
 		EnhacedPlayer player = new EnhacedPlayer("juan", 100, "Sword");
-		System.out.println("remaining Health = "+player.getHealth());
-		
-		
-		
-		
-		
-		
+		player.loseHealth(300);
+		System.out.println("remaining Health = " + player.getHealth());
+
 	}
 
 }

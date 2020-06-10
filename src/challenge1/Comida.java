@@ -1,4 +1,4 @@
-package challenges;
+package challenge1;
 
 public class Comida {
 	private boolean isNutritiva;

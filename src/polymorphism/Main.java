@@ -1,8 +1,16 @@
 package polymorphism;
 
+
+
+import javax.swing.JOptionPane;
+
 class Movie{
 	private String name;
 	
+	public String getName() {
+		return name;
+	}
+
 	public Movie(String name) {
 		this.name = name;
 	}
@@ -11,6 +19,8 @@ class Movie{
 		return "no plot here";
 	}
 }
+
+
 
 class Jaws extends Movie{
 	public Jaws() {
@@ -69,11 +79,24 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		
-
-	}
+//		apellido = JOptionPane.showInputDialog(null, "PONE TU APELLIDO GUACHO", "PONELE UN TITULO", 3);
+//		valor = JOptionPane.showInputDialog(null, "PONE UN VALOR","dale guachin",1);
+//		JOptionPane.showMessageDialog(null, apellido, "que onda", 1   );
+//		valores = Integer.parseInt(valor);
+//		JOptionPane.showMessageDialog(null, valores);
+//		String[] options = {"MasaMadre", "Muerte", "Muerte"};
+//		int x = JOptionPane.showOptionDialog(null, "Si fueras Marcos, que usas para hacer pan?",
+//                "Marco's Choice",
+//                JOptionPane.DEFAULT_OPTION, 0, null, options, options[1]);
+//		JOptionPane.showMessageDialog(null, options);
+		for(int i= 1; i<11;i++) {
+			Movie movie = randomMovie();
+			System.out.println("Movie# "+i+": "+movie.getName()+"\n"+"PLOT:"+movie.plot()+"\n");
+		}
 
 	
+	}
+
 	public static Movie randomMovie() {
 		int randomNumber = (int) ((Math.random() * 5) +1);
 		System.out.println("Random number: "+randomNumber);

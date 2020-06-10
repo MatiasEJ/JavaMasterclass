@@ -1,7 +1,7 @@
 /**
  * 
  */
-package challenges;
+package challenge1;
 
 /**
  * @author keta

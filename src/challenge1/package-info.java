@@ -5,4 +5,4 @@
  * @author keta
  *
  */
-package challenges;
+package challenge1;

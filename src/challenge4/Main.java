@@ -1,5 +1,6 @@
 package challenge4;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -34,11 +35,11 @@ public class Main {
 
 	public static void sortInteger(int[] nombreArray) {
 		int aux;
-		int[] nuevoArray = new int[nombreArray.length];
+		int[] nuevoArray = Arrays.copyOf(nombreArray, nombreArray.length);
 
-		for (int i = 0; i < nombreArray.length; i++) {
-			nuevoArray[i] = nombreArray[i];
-		}
+//		for (int i = 0; i < nombreArray.length; i++) {
+//			nuevoArray[i] = nombreArray[i];
+//		}
 
 		boolean flag = true;
 		int temp;

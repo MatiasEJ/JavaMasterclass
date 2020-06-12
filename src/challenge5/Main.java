@@ -8,10 +8,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] nums = { 5, 4, 3, 2, 1 };
+		int[] nums = { 5, 74, 13, 29, 155 };
 		System.out.println("lo numerito : " + Arrays.toString(nums));
 
 		reverse(nums);
+		System.out.printf("El minimo es: %d", findMin(nums));
 
 	}
 
@@ -30,6 +31,18 @@ public class Main {
 			System.out.printf("numero[%d]: %d\n", i, nombreArray[i]);
 		}
 		System.out.printf("-------\n");
+	}
+
+	public static int findMin(int[] array) {
+		int arrayMaxIndex = array.length;
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < arrayMaxIndex; i++) {
+			if (array[i] < min) {
+				min = array[i];
+			}
+		}
+
+		return min;
 	}
 
 	public static void reverse(int[] array) {

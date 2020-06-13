@@ -6,7 +6,7 @@ public class MobilePhone {
 	private String myNumber;
 	private ArrayList<Contact> myContact;
 
-	public MobilePhone(String myNumber, ArrayList<Contact> myContact) {
+	public MobilePhone(String myNumber) {
 		this.myNumber = myNumber;
 		this.myContact = new ArrayList<Contact>();
 	}
@@ -47,7 +47,7 @@ public class MobilePhone {
 		return this.myContact.indexOf(contact);
 	}
 
-	private int findContact(String contactName) {
+	public int findContact(String contactName) {
 		for (int i = 0; i < this.myContact.size(); i++) {
 			Contact contact = this.myContact.get(i);
 			if (contact.getName().equals(contactName)) {
@@ -60,6 +60,14 @@ public class MobilePhone {
 	public String queryContact(Contact contact) {
 		if (findContact(contact) >= 0) {
 			return contact.getName();
+		}
+		return null;
+	}
+
+	public Contact queryContact(String name) {
+		int pos = findContact(name);
+		if (pos >= 0) {
+			return this.myContact.get(pos);
 		}
 		return null;
 	}

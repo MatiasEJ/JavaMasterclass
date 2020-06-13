@@ -31,22 +31,22 @@ public class Main {
 
 			switch (choice) {
 			case 0:
-				mobilePhone.printContacts();
+				printActions();
 				break;
 			case 1:
-				groceryList.printGroceryList();
+				mobilePhone.printContacts();
 				break;
 			case 2:
-				addItem();
+				addContact();
 				break;
 			case 3:
-				modifyItem();
+				updateContact();
 				break;
 			case 4:
-				removeItem();
+				removeContact();
 				break;
 			case 5:
-				searchForItem();
+				searchContact();
 				break;
 			case 6:
 				quit = true;
@@ -72,6 +72,79 @@ public class Main {
 		System.out.printf("\n 4 - Remove ");
 		System.out.printf("\n 5 - Search ");
 		System.out.printf("\n 6 - Quit ");
+
+	}
+
+	private static void addContact() {
+		System.out.println("Añadir un nuevo contacto: ");
+		String name = scanner.nextLine();
+		System.out.println("Añadir numero de contacto: ");
+		String number = scanner.nextLine();
+		Contact newContact = Contact.createContact(name, number);
+		if (mobilePhone.storeContact(newContact)) {
+			System.out.println("Contacto Creado con exito");
+
+		} else {
+			System.out.println("No se pudo crear el contacto");
+
+		}
+
+	}
+
+	private static void updateContact() {
+		System.out.println("Modificar contacto: ");
+		String name = scanner.nextLine();
+		Contact existingContact = mobilePhone.queryContact(name);
+		if (existingContact == null) {
+			System.out.println("No se encontro el usuario");
+			return;
+		} else {
+			System.out.println("Usuario encontrado, introduzca nombre: ");
+			System.out.println("Modificar contacto: ");
+			String newName = scanner.nextLine();
+			System.out.println("Modificar contacto: ");
+			String newPhone = scanner.nextLine();
+			Contact newContact = Contact.createContact(newName, newPhone);
+			if (mobilePhone.updateContact(existingContact, newContact)) {
+				System.out.println("Updateado correcto");
+			} else {
+				System.out.println("No se pudo actualizar");
+			}
+
+		}
+		;
+
+	}
+
+	private static void removeContact() {
+		System.out.println("Contacto a eliminar: ");
+		String name = scanner.nextLine();
+		Contact existingContact = mobilePhone.queryContact(name);
+		if (existingContact == null) {
+			System.out.println("No se encontro el usuario");
+			return;
+		} else {
+			mobilePhone.removeContact(existingContact);
+			System.out.println("Usuario encontrado y eliminado. ");
+
+		}
+		;
+
+	}
+
+	private static void searchContact() {
+		System.out.println("Modificar contacto: ");
+		String name = scanner.nextLine();
+		Contact existingContact = mobilePhone.queryContact(name);
+		if (existingContact == null) {
+			System.out.println("No se encontro el usuario");
+			return;
+		} else {
+			System.out.println(
+					"Usuario encontrado: " + existingContact.getName() + " numero: " + existingContact.getPhone());
+
+		}
+		;
 
 	}
 

@@ -3,35 +3,25 @@ package autoBoxing;
 import java.util.ArrayList;
 
 public class Customer {
-	ArrayList<Double> transactions = new ArrayList<Double>();
+	ArrayList<Double> transactions;
 	private String name;
 
-	public Customer(ArrayList<Double> transactions, String name) {
-		this.transactions = transactions;
+	public Customer(String name, double initialAmount) {
 		this.name = name;
+		this.transactions = new ArrayList<Double>();
+		addTransaction(initialAmount);
 	}
 
-	public void addTransaction(int value) {
-		transactions.add(Double.valueOf(value));
-		// for (int i = 0; i < 10; i++) {
-		// System.out.printf("[%d]=%d \n", i, myIntArray.get(i));
-		// }
+	public void addTransaction(Double amount) {
+		this.transactions.add(amount);
 	}
 
 	public ArrayList<Double> getTransactions() {
 		return transactions;
 	}
 
-	public void setTransactions(ArrayList<Double> transactions) {
-		this.transactions = transactions;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 }

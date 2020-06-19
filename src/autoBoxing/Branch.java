@@ -6,8 +6,8 @@ public class Branch {
 	private String name;
 	ArrayList<Customer> customers;
 
-	public Branch(ArrayList<Customer> customer) {
-		this.customers = customers;
+	public Branch(String branchName) {
+		this.name = branchName;
 		this.customers = new ArrayList<Customer>();
 	}
 
@@ -20,6 +20,10 @@ public class Branch {
 			this.customers.add(new Customer(customerName, initialAmount));
 		}
 		return false;
+	}
+
+	public ArrayList<Customer> getCustomers() {
+		return customers;
 	}
 
 	public boolean addCustomerTransaction(String customerName, double amount) {

@@ -1,7 +1,5 @@
 package autoBoxing;
 
-import java.util.ArrayList;
-
 public class Main {
 	/**
 	 * Create a simple banking application there should be a bank class it should
@@ -16,17 +14,26 @@ public class Main {
 	 * list of their transactions Demostration of autoboxing and unboxing in your
 	 * code Transactions add data validations check if exist
 	 **/
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		ArrayList<Integer> myIntArray = new ArrayList<Integer>();
-		for (int i = 0; i < 10; i++) {
-			myIntArray.add(Integer.valueOf(i + 1));
-		}
-		for (int i = 0; i < 10; i++) {
-			System.out.printf("[%d]=%d \n", i, myIntArray.get(i));
-		}
+		Bank bank = new Bank("HSBC");
 
+		bank.addBranch("zonasur");
+		bank.addCustomer("zonasur", "Diego", 100);
+		bank.addCustomer("zonasur", "Juan", 200);
+		bank.addCustomer("zonasur", "Marko", 300);
+
+		bank.addBranch("zona norte");
+		bank.addCustomer("zona norte", "Diegol", 400);
+		bank.addCustomer("zona norte", "Juanl", 500);
+		bank.addCustomer("zona norte", "Markol", 600);
+
+//		bank.listCustomers("zonasur", true);
+
+		bank.addCustomerTransaction("zonasur", "Diego", 300);
+		bank.listCustomers("zonasur", true);
 	}
 
 }

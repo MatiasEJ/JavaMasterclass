@@ -9,19 +9,17 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-//		//EJERCICIO 1
+////		//EJERCICIO 1
+//		String materias[] = { "lengua", "matematica", "" };
 //		System.out.printf("--EJERCICIO 1---\n");
-//		
-//		System.out.printf("Materia: ");
-//		String materia = scanner.next();
-//		promedios(materia);
-//		
-//		//EJERCICIO 2
+//		promedios(materias);
+////		
+////		//EJERCICIO 2
 //		System.out.printf("--EJERCICIO 2---\n");
 //		for (int i = 2; i < 100; i++) {
 //			if (primo(i) > 0)
 //				System.out.printf("%d, ", primo(i));
-//			
+//
 //		}
 //		
 		// EJERCICIO 3
@@ -30,30 +28,29 @@ public class Main {
 		int numA = scanner.nextInt();
 		System.out.printf("Numero B: ");
 		int numB = scanner.nextInt();
-		System.out.printf("MinCM de %d y %d = %d \n", numA, numB, minComunMulti(numA, numB));
-
+		System.out.printf("el MCM= %d", minComunMulti(numA, numB));
 	}
 
 	// 1. Realizar un algoritmo que me permita ingresar las notas que saqué durante
-	// la cursada en
-	// todas las materias del primer cuatrimestre de 2020 del ifts16 y me devuelva
-	// el promedio de
-	// las mismas.
+	// la cursada en todas las materias del primer cuatrimestre de 2020 del ifts16 y
+	// me devuelva
+	// el promedio de las mismas.
 
-	public static void promedios(String materia) {
+	public static void promedios(String[] materias) {
 		int sumaNota = 0, cantNotas = 0;
-		System.out.printf("Materia: %s \n", materia);
-		System.out.printf("Nota: ");
-		int notaSig = scanner.nextInt();
-		while (notaSig > 0) {
-			cantNotas++;
-			sumaNota += notaSig;
+		for (int i = 0; i < materias.length; i++) { // cantidad de materias
+			System.out.printf("Materia(la carga finaliza con -1): %s \n", materias[i]);
 			System.out.printf("Nota: ");
-			notaSig = scanner.nextInt();
+			int notaSig = scanner.nextInt();
+			while (notaSig > 0) { // Pido notas hasta ingresar numero negativo
+				cantNotas++;
+				sumaNota += notaSig;
+				System.out.printf("Nota: ");
+				notaSig = scanner.nextInt();
+			}
+			double promedio = sumaNota / cantNotas;
+			System.out.printf("Materia: %s, Promedio: %.2f \n", materias[i], promedio);
 		}
-		double promedio = sumaNota / cantNotas;
-
-		System.out.printf("Materia: %s, Promedio: %.2f", materia, promedio);
 
 	}
 
@@ -77,20 +74,21 @@ public class Main {
 	// números pasados
 	// por parámetros.
 	public static int minComunMulti(int numeroA, int numeroB) {
-
-//		MCM(a, b) = (a * b) / MCD(a, b)
-		return (numeroA * numeroB) / mcd(numeroA, numeroB);
-
-	}
-
-	public static int mcd(int a, int b) {
+		int a = numeroA, b = numeroB;
 		int aux;// Para no perder b
-		while (b != 0) {
-			aux = b;
-			b = a % b; // EL RESTO DE LA DIVISION
-			a = aux; // A pasa a tener el valor de b (que estaba guardado en aux)
+		int auxA = numeroA;
+		// MaxComunDivisor//en este bloque se calcula el maximo comun divisor
+		int mcd;
+		while (numeroB != 0) {
+			aux = numeroB;
+			numeroB = numeroA % numeroB; // EL RESTO DE LA DIVISION
+			auxA = aux; // A pasa a tener el valor de b (que estaba guardado en aux)
 		}
-		return a;
+		mcd = auxA;
+		// MINIMO COMUN MULTIPLO
+		// MCM(a, b) = (a * b) / MCD(a, b)
+		int mcm = ((a * b) / mcd);
+		return mcm;
 	}
 
 }

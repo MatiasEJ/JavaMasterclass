@@ -7,21 +7,21 @@ public class Main {
 	private static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		// Ejercicios realizados en Java.
 
-////		//EJERCICIO 1
-//		String materias[] = { "lengua", "matematica", "" };
-//		System.out.printf("--EJERCICIO 1---\n");
-//		promedios(materias);
-////		
-////		//EJERCICIO 2
-//		System.out.printf("--EJERCICIO 2---\n");
-//		for (int i = 2; i < 100; i++) {
-//			if (primo(i) > 0)
-//				System.out.printf("%d, ", primo(i));
-//
-//		}
-//		
+		// EJERCICIO 1
+		System.out.printf("--EJERCICIO 1---\n");
+		String materias[] = { "ADC B", "CBC B", "DL B", "IT B", "IET B", "LC B" };
+		promedios(materias);
+
+		// EJERCICIO 2
+		System.out.printf("--EJERCICIO 2---\n");
+		for (int i = 2; i < 100; i++) {
+			if (primo(i) > 0)
+				System.out.printf("%d, ", primo(i));
+
+		}
+
 		// EJERCICIO 3
 		System.out.printf("--EJERCICIO 3---\n");
 		System.out.printf("Numero A: ");
@@ -59,7 +59,7 @@ public class Main {
 	// ciclo de repetición del 2 al 1000 para que identifique los mismos y los
 	// imprima por consola.
 	public static int primo(int numero) {
-		if ((numero % 2) == 0 && numero != 2) {
+		if ((numero % 2) == 0) {
 			return 0;
 		}
 		for (int i = 2; i < Math.sqrt(numero); i++) {

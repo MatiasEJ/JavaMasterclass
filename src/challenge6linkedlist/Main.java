@@ -127,6 +127,16 @@ public class Main {
 				printList(playList);
 			case 5:
 				printMenu();
+			case 6:
+				if (playList.size() > 0) {
+					listIterator.remove();
+					if (listIterator.hasNext()) {
+						System.out.println("now playing" + listIterator.next());
+					} else if (listIterator.hasPrevious()) {
+						System.out.println("now playing" + listIterator.previous());
+
+					}
+				}
 			}
 		}
 
@@ -140,6 +150,7 @@ public class Main {
 		System.out.printf("3 - replay \n ");
 		System.out.printf("4 - PrintList \n ");
 		System.out.printf("5 - PrintMenu \n ");
+		System.out.printf("6 - delete current song");
 
 	}
 

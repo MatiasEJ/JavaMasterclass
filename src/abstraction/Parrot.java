@@ -9,8 +9,9 @@ public class Parrot extends Bird {
 
 	@Override
 	public void fly() {
-		// TODO Auto-generated method stub
+		super.fly();
 		System.out.println("parroteando");
+//		 TODO Auto-generated method stub
 	}
 
 }

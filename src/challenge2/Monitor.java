@@ -1,3 +1,4 @@
+package challenge2;
 
 public class Monitor {
 	private String model;

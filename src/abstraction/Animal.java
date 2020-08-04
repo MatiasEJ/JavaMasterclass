@@ -1,6 +1,6 @@
 package abstraction;
 
-public abstract class Animal {
+public abstract class Animal{
 	private String name;
 
 	public Animal(String name) {
@@ -14,5 +14,6 @@ public abstract class Animal {
 	public String getName() {
 		return name;
 	}
+
 
 }

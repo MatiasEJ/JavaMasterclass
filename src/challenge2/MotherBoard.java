@@ -1,3 +1,4 @@
+package challenge2;
 
 public class MotherBoard {
 	private String model;

@@ -1,10 +1,10 @@
-/**
+package challenge2; /**
  * 
  */
 
 /**
  * @author keta
- *	Create a new classs VipCustomer
+ *	Create a new classs challenge2.VipCustomer
  *	 It should have 3 fields, name, credit limit, and email address.
  * 1st constructor empty should call the constructor with 3 parametres with default values
  * 2nd constructor should pass on the values it recieves and add a default value for the 3rd

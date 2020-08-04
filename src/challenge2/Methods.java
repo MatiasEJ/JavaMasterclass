@@ -1,3 +1,5 @@
+package challenge2;
+
 /****
  * JAVA BASES. Cap 26.
  * Constructors +

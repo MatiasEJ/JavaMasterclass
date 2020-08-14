@@ -88,5 +88,13 @@ public class MyLinkedList implements NodeList {
                 root = root.next();
             }
         }
+//    //O de forma recursiva
+//        if (root != null){
+//            System.out.println(root.getValue());
+//            transverse(root.next());
+//        }
+
     }
+
+
 }

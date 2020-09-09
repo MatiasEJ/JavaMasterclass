@@ -1,15 +1,18 @@
 package Generics;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
-//                  Bounded Types
-public class Team<T extends Player> {
-    private String name;
+//Bounded Types;
+//Team<T extends Player & "unaInterface" & "otraInterface">
+public class Team<T extends Player> implements Comparable<Team<T>>{
+    private final String name;
     int played = 0;
     int won = 0;
     int lost = 0;
     int tied = 0;
 
-    private ArrayList<T> members = new ArrayList<>();
+    private final ArrayList<T> members = new ArrayList<>();
 
     public Team(String name) {
         this.name = name;
@@ -19,9 +22,11 @@ public class Team<T extends Player> {
         return name;
     }
 
+
+
     public boolean addPlayer(T player){
         if (members.contains(player)){
-            System.out.println((player.getName() + "is already in the team");
+            System.out.println(player.getName() + "is already in the team");
             return false;
         }else{
             members.add(player);
@@ -34,7 +39,7 @@ public class Team<T extends Player> {
         return this.members.size();
     }
 
-    public void matchResult(Team opponent, int ourScore, int theirScore){
+    public void matchResult(Team<T> opponent, int ourScore, int theirScore){
         if(ourScore>theirScore){
             won++;
         }else if(ourScore == theirScore){
@@ -52,4 +57,14 @@ public class Team<T extends Player> {
         return (won*2) + tied;
     }
 
+    @Override
+    public int compareTo(@NotNull Team<T> team) {
+        if(this.ranking() > team.ranking()){
+            return -1;
+        }else if(this.ranking() < team.ranking()){
+            return 1;
+        }else{
+        return 0;
+        }
+    }
 }

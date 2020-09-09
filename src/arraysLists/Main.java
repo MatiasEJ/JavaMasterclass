@@ -1,6 +1,8 @@
 package arraysLists;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
@@ -10,44 +12,65 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Map<String, String> languajes = new HashMap<>();
+		languajes.put("Java", "a compiled high level, object oriented");
+		languajes.put("Python", "a interpreted, high level,  object oriented");
+		languajes.put("Algol", "an algoritmic languaje");
+		languajes.put("BASIC", "Beginners All Purpose Symbolic Instruction Code");
+		languajes.put("Lisp", "There in lies madness");
 
-		boolean quit = false;
-		int choice = 0;
-		printInstructions();
-		while (!quit) {
-			System.out.println("enter your choice");
-			choice = scanner.nextInt();
-			scanner.nextLine();
+		System.out.println(languajes.get("Java"));
+		languajes.put("Java", "There in lies madness");
+		System.out.println(languajes.get("Java"));
 
-			switch (choice) {
-			case 0:
-				printInstructions();
-				break;
-			case 1:
-				groceryList.printGroceryList();
-				break;
-			case 2:
-				addItem();
-				break;
-			case 3:
-				modifyItem();
-				break;
-			case 4:
-				removeItem();
-				break;
-			case 5:
-				searchForItem();
-				break;
-			case 6:
-				quit = true;
-				break;
-			case 7:
-				processArrayList();
-			default:
-				break;
-			}
 
-		}
+//
+//		Theatre elLoco = new Theatre("elLoco",8,12);
+////		elLoco.getSeats();
+//		if(elLoco.reserveSeat("H11")){
+//			System.out.println("paganding..");
+//		}else{
+//			System.out.println("ocupadou");
+//		}
+
+
+//		boolean quit = false;
+//		int choice = 0;
+//		printInstructions();
+//		while (!quit) {
+//			System.out.println("enter your choice");
+//			choice = scanner.nextInt();
+//			scanner.nextLine();
+//
+//			switch (choice) {
+//			case 0:
+//				printInstructions();
+//				break;
+//			case 1:
+//				groceryList.printGroceryList();
+//				break;
+//			case 2:
+//				addItem();
+//				break;
+//			case 3:
+//				modifyItem();
+//				break;
+//			case 4:
+//				removeItem();
+//				break;
+//			case 5:
+//				searchForItem();
+//				break;
+//			case 6:
+//				quit = true;
+//				break;
+//			case 7:
+//				processArrayList();
+//			default:
+//				break;
+//			}
+//
+//		}
 
 	}
 

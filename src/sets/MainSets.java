@@ -29,7 +29,7 @@ public class MainSets {
         HeavenlyBody tempMoon = new HeavenlyBody("Moo", 27);
         solarSystem.put(tempMoon.getName(),tempMoon);
         planets.add(tempMoon);
-        
+
 
 
 

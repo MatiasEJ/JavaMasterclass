@@ -20,21 +20,17 @@ public class MainGame {
         location.get(1).addExit("E",3);
         location.get(1).addExit("S",4);
         location.get(1).addExit("N",5);
-        location.get(1).addExit("Q",0);
 
         location.get(2).addExit("N",5);
-        location.get(2).addExit("Q",0);
 
         location.get(3).addExit("W",1);
-        location.get(2).addExit("Q",0);
+        location.get(3).addExit("Q",0);
 
         location.get(4).addExit("N",1);
         location.get(4).addExit("W",2);
-        location.get(4).addExit("Q",0);
 
         location.get(5).addExit("S",1);
         location.get(5).addExit("W",2);
-        location.get(5).addExit("Q",0);
 
 
         int loc = 1;
@@ -43,13 +39,17 @@ public class MainGame {
             if (loc == 0){
                 break;
             }
-            Map<String,Integer> exits = location .get(loc).getExits();
-            System.out.println("Available exits are: ");
+           Map<String,Integer> exits = location.get(loc).getExits();
+           System.out.println("Available exits are (Q to quit): ");
+
            for(String exit: exits.keySet()){
                System.out.print(exit + ", ");
            }
-            System.out.println();
+           System.out.println();
+
+
            String direction = scanner.nextLine().toUpperCase();
+
            if(exits.containsKey(direction)){
                loc = exits.get(direction);
            }else{

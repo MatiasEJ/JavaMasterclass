@@ -1,3 +1,10 @@
-"#JavaMasterclass" 
-Udemy Course Java - 80hs Bases e Intro a Spring.
+#JavaMasterclass
+Udemy Course Java Masterclass - By LearnProgramming:
+
++ OOP
++ Collections
++ Generics
++ Java Fx
++ Concurrency
++ Lambda Expressions
 

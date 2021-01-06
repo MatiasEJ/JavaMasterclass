@@ -3,10 +3,7 @@ package io;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
@@ -27,69 +24,127 @@ public class Locations implements Map<Integer, Location> {
 		// 		locFile.close();
 		// 	}
 		// }
-		try (FileWriter locFile = new FileWriter("locations.txt");
-		FileWriter dirFile = new FileWriter("directions.txt")) {
+		// try (FileWriter locFile = new FileWriter("locations.txt");
+		// FileWriter dirFile = new FileWriter("directions.txt")) {
+		// 	for (Location location : locations.values()) {
+		// 		locFile.write(location.getLocationId() + "," + location
+		// 		.getDescription() + "\n");
+		// 		for (String direction : location.getExits().keySet()){
+		// 			dirFile.write(location.getLocationId()+","+direction+",
+		// 			"+location.getExits().get(direction)+"\n");
+		// 		}
+		// 	}
+		// }
+		//	BYTESTREAMS
+
+		try (DataOutputStream locFile =
+				     new DataOutputStream(
+						     new BufferedOutputStream(
+								     new FileOutputStream("locations.dat"))
+				     )) {
 			for (Location location : locations.values()) {
-				locFile.write(location.getLocationId() + "," + location.getDescription() + "\n");
-				for (String direction : location.getExits().keySet()){
-					dirFile.write(location.getLocationId()+","+direction+","+location.getExits().get(direction)+"\n");
+				locFile.writeInt(location.getLocationId());
+				locFile.writeUTF(location.getDescription());
+				System.out.println(location.getLocationId() + location.getDescription());
+				System.out.println(location.getExits().size());
+				locFile.writeInt(location.getExits().size());
+				for (String direction : location.getExits().keySet()) {
+					if (!direction.equalsIgnoreCase("Q")) {
+						System.out.println("\t\t" + direction + "," + location.getExits());
+						locFile.writeUTF(direction);
+						locFile.writeInt(location.getExits().get(direction));
+					}
 				}
 			}
 		}
 
+
 	}
 
 	static {
-		Scanner scanner = null;
-		try{
-			scanner = new Scanner(new FileReader("locations.txt"));
-			scanner.useDelimiter(",");
-			while (scanner.hasNextLine()){
-				int loc = scanner.nextInt();
-				scanner.skip(scanner.delimiter());
-				String description = scanner.nextLine();
-				System.out.println("imported: "+loc+description);
-				Map<String,Integer> tempExit = new HashMap<>();
-				locations.put(loc,new Location(loc,description,tempExit));
+		//BINARY LOADOUT
+		try (DataInputStream locFile = new DataInputStream(
+				new BufferedInputStream(new FileInputStream("locations.dat")))) {
+			boolean eof = false;
+			while (!eof) {
+				try {
+					Map<String, Integer> exits       = new LinkedHashMap<>();
+					int                  locID       = locFile.readInt();
+					String               description = locFile.readUTF();
+					int                  numExits    = locFile.readInt();
+					System.out.println("Read location: " + locID + ":" + description);
+					for (int i = 0; i < numExits; i++) {
+						String direction   = locFile.readUTF();
+						int    destination = locFile.readInt();
+						exits.put(direction, destination);
+						System.out.println("\t\t" + direction + "," + destination);
+					}
+					locations.put(locID, new Location(locID, description,
+							exits));
+
+				} catch (EOFException e) {
+					eof = true;
+				}
 			}
-		}catch (IOException e){
+
+
+		} catch (FileNotFoundException fileNotFoundException) {
+			fileNotFoundException.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
-		}finally {
-			if(scanner != null){
-				scanner.close();
-			}
 		}
 
 
-		try {
-			scanner = new Scanner(new BufferedReader(new FileReader(
-					"directions.txt")));
-			scanner.useDelimiter(",");
-			while(scanner.hasNextLine()) {
-				// int loc = scanner.nextInt();
-				// scanner.skip(scanner.delimiter());
-				// String direction = scanner.next();
-				// scanner.skip(scanner.delimiter());
-				// String dest        = scanner.nextLine();
-				// int    destination = Integer.parseInt(dest);
-				String input = scanner.nextLine();
-				String[] data = input.split(",");
-				int loc = Integer.parseInt(data[0]);
-				String direction = data[1];
-				int destination = Integer.parseInt(data[2]);
-
-				System.out.println(loc + "," + direction + "," + destination);
-				Location location = locations.get(loc);
-				location.addExit(direction, destination);
-
-
-			}
-
-		}catch(IOException e){
-			e.printStackTrace();
-		}finally {
-			if(scanner != null) scanner.close();
-		}
+		// Scanner scanner = null;
+		// try {
+		// 	scanner = new Scanner(new FileReader("locations.txt"));
+		// 	scanner.useDelimiter(",");
+		// 	while (scanner.hasNextLine()) {
+		// 		int loc = scanner.nextInt();
+		// 		scanner.skip(scanner.delimiter());
+		// 		String description = scanner.nextLine();
+		// 		System.out.println("imported: " + loc + description);
+		// 		Map<String, Integer> tempExit = new HashMap<>();
+		// 		locations.put(loc, new Location(loc, description, tempExit));
+		// 	}
+		// } catch (IOException e) {
+		// 	e.printStackTrace();
+		// } finally {
+		// 	if (scanner != null) {
+		// 		scanner.close();
+		// 	}
+		// }
+		//
+		//
+		// try {
+		// 	scanner = new Scanner(new BufferedReader(new FileReader(
+		// 			"directions.txt")));
+		// 	scanner.useDelimiter(",");
+		// 	while (scanner.hasNextLine()) {
+		// 		// int loc = scanner.nextInt();
+		// 		// scanner.skip(scanner.delimiter());
+		// 		// String direction = scanner.next();
+		// 		// scanner.skip(scanner.delimiter());
+		// 		// String dest        = scanner.nextLine();
+		// 		// int    destination = Integer.parseInt(dest);
+		// 		String   input       = scanner.nextLine();
+		// 		String[] data        = input.split(",");
+		// 		int      loc         = Integer.parseInt(data[0]);
+		// 		String   direction   = data[1];
+		// 		int      destination = Integer.parseInt(data[2]);
+		//
+		// 		System.out.println(loc + "," + direction + "," + destination);
+		// 		Location location = locations.get(loc);
+		// 		location.addExit(direction, destination);
+		//
+		//
+		// 	}
+		//
+		// } catch (IOException e) {
+		// 	e.printStackTrace();
+		// } finally {
+		// 	if (scanner != null) scanner.close();
+		// }
 
 		// Map<String, Integer> tmpExits = new HashMap<String, Integer>();
 		// locations.put(0, new Location(0, "Te fuiste", tmpExits));

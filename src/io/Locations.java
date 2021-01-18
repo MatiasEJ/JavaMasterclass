@@ -31,7 +31,9 @@ public class Locations implements Map<Integer, Location> {
 					Location location = (Location) locFile.readObject();
 					System.out.println("Read Location"+location.getLocationId());
 					locations.put(location.getLocationId(),location);
-				} catch (EOFException e) {
+				} catch (InvalidClassException invalidClassException){
+					System.out.println("Invalid class exception "+ invalidClassException );
+				}catch (EOFException e) {
 					eof = true;
 				} catch (ClassNotFoundException e) {
 					e.printStackTrace();

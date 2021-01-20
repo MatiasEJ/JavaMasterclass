@@ -23,58 +23,31 @@ public class mainLamdas {
         employees.add(john);
         employees.add(tim);
         employees.add(jack);
+        //creates new impl of employee every time
+        for (Employee employee : employees) {
+            System.out.println(employee.getName());
+            new Thread(() -> System.out.println(employee.getAge())).start();
+        }
+        //idem
+        for (int i = 0; i < employees.size(); i++) {
+            Employee employee = employees.get(i);
+            System.out.println(employee.getName());
+            new Thread(() -> System.out.println(employee.getAge())).start();
+        }
+        //       DOESN'T WORK
+        //       Employee employee;
+        //        for (int i = 0; i<employees.size();i++){
+        //            employee = employees.get(i);
+        //            System.out.println(employee.getName());
+        //            new Thread(()-> System.out.println(employee.getAge()))
+        //            .start();
+        //        }
         
-//        Collections.sort(employees, new Comparator<Employee>() {
-//
-//            @Override
-//            public int compare(Employee o1, Employee o2) {
-//                return o1.getName().compareTo(o2.getName());
-//            }
-//        });
-//
-//        for (Employee employee : employees) {
-//            System.out.println(employee.getName());
-//        }
-//
-//
-//        Collections.sort(employees,
-//                         (o1, o2) -> o2.getName().compareTo(o1.getName()));
-//
-//        for (Employee employee : employees) {
-//            System.out.println(employee.getName());
-//        }
-//
-//
-//        Collections.sort(employees,
-//                         Comparator.comparing(Employee::getName));
-//
-//
-//        String sillyString = doStringStuff(new UpperConcat() {
-//            @Override
-//            public String upperAndConcat(String s1, String s2) {
-//                return s1.toUpperCase() + s2.toUpperCase();
-//            }
-//        }, employees.get(0).getName(), employees.get(1).getName());
-//
-//
-//        UpperConcat upperConcat =
-//            (s1, s2) -> s1.toUpperCase() + s2.toUpperCase();
-//        String sillyString2 =
-//            doStringStuff(upperConcat, employees.get(0).getName(),
-//                          employees.get(1).getName());
-//
-//        String sillyString3 =
-//            doStringStuff(upperConcat, employees.get(0).getName(),
-//                          employees.get(1).getName());
-//
-//
-//        System.out.println(sillyString2);
-//
-//
-//        AnotherClass anotherClass = new AnotherClass();
-//        String s = anotherClass.doSomething();
-//        System.out.println(s);
-//
+        employees.forEach(employee -> {
+            System.out.println(employee.getName());
+            System.out.println(employee.getAge());
+        });
+        
         
     }
     
@@ -114,25 +87,26 @@ class Employee {
 }
 
 
-class AnotherClass{
+class AnotherClass {
     
-    public String doSomething(){
-        System.out.println("AnotherClass class name: "+getClass().getSimpleName());
-        UpperConcat uc = (s1,s2) ->{
-            System.out.println("lambda exp:"+getClass().getSimpleName());
-            String result = s1.toLowerCase()+s2.toUpperCase();
+    public String doSomething() {
+        System.out.println(
+            "AnotherClass class name: " + getClass().getSimpleName());
+        UpperConcat uc = (s1, s2) -> {
+            System.out.println("lambda exp:" + getClass().getSimpleName());
+            String result = s1.toLowerCase() + s2.toUpperCase();
             return result;
         };
-       
-        return mainLamdas.doStringStuff(uc,"String12","String32");
         
-//        return mainLamdas.doStringStuff(new UpperConcat() {
-//
-//            @Override
-//            public String upperAndConcat(String s1, String s2) {
-//                System.out.println("Annonymous class name: "+getClass().getSimpleName());
-//                return s1.toUpperCase()+s2.toUpperCase();
-//            }
-//        }, "String1","String2");
+        return mainLamdas.doStringStuff(uc, "String12", "String32");
+        
+        //        return mainLamdas.doStringStuff(new UpperConcat() {
+        //
+        //            @Override
+        //            public String upperAndConcat(String s1, String s2) {
+        //                System.out.println("Annonymous class name: "+getClass().getSimpleName());
+        //                return s1.toUpperCase()+s2.toUpperCase();
+        //            }
+        //        }, "String1","String2");
     }
 }
